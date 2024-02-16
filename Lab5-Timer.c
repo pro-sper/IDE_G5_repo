@@ -19,6 +19,8 @@
 #include "Common.h"
 extern uint32_t SystemCoreClock;
 
+
+#define EVER ;;
 // these are not used by the timer
 BOOLEAN g_sendData = FALSE;
 uint16_t line[128];
@@ -155,27 +157,25 @@ void Timer32_2_ISR(void)
 //
 // main
 //
-//
-//
 int main(void){
 	//initializations
 	uart0_init();
 	uart0_put("\r\nLab5 Timer demo\r\n");
 	// Set the Timer32-2 to 2Hz (0.5 sec between interrupts)
 	//Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1); // initialize Timer A32-1;
-    ;
+    Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1);
         
 	// Setup Timer32-2 with a .001 second timeout.
 	// So use DEFAULT_CLOCK_SPEED/(1/0.001) = SystemCoreClock/1000
-	//Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-1;
-	;
+	//Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-2;
+	Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1);
     
 	Switch1_Interrupt_Init();
 	Switch2_Interrupt_Init();
 	LED1_Init();
 	LED2_Init();
 	EnableInterrupts();
-  while(1)
+  for(EVER)
 	{
     WaitForInterrupt();
   }

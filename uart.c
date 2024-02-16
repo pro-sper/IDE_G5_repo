@@ -21,19 +21,21 @@ void uart0_init(void)
 	
 	EUSCI_A0->CTLW0|=BIT0;
 
-	// bit15=0,      no parity bits
-	// bit14=x,      not used when parity is disabled
-	// bit13=0,      LSB first
-	// bit12=0,      8-bit data length
-	// bit11=0,      1 stop bit
-	// bits10-8=000, asynchronous UART mode
-	// bits7-6=11,   clock source to SMCLK
-	// bit5=0,       reject erroneous characters and do not set flag
-	// bit4=0,       do not set flag for break characters
-	// bit3=0,       not dormant
-	// bit2=0,       transmit data, not address (not used here)
-	// bit1=0,       do not transmit break (not used here)
-	// bit0=1,       hold logic in reset state while configuring
+	/*
+	bit15=0,      no parity bits
+	bit14=x,      not used when parity is disabled
+	bit13=0,      LSB first
+	bit12=0,      8-bit data length
+	bit11=0,      1 stop bit
+	bits10-8=000, asynchronous UART mode
+	bits7-6=11,   clock source to SMCLK
+	bit5=0,       reject erroneous characters and do not set flag
+	bit4=0,       do not set flag for break characters
+	bit3=0,       not dormant
+	bit2=0,       transmit data, not address (not used here)
+	bit1=0,       do not transmit break (not used here)
+	bit0=1,       hold logic in reset state while configuring
+	*/
 
 	// set CTLW0 - hold logic and configure clock source to SMCLK
 	EUSCI_A0->CTLW0|=0x80;
@@ -71,19 +73,21 @@ void uart2_init(void){
 	//Set the UART to RESET state (set bit0 of EUSCI_A2->CTLW0 register to '1')
 	EUSCI_A2->CTLW0|=BIT0;
 
-	// bit15=0,      no parity bits
-	// bit14=x,      not used when parity is disabled
-	// bit13=0,      LSB first
-	// bit12=0,      8-bit data length
-	// bit11=0,      1 stop bit
-	// bits10-8=000, asynchronous UART mode
-	// bits7-6=11,   clock source to SMCLK
-	// bit5=0,       reject erroneous characters and do not set flag
-	// bit4=0,       do not set flag for break characters
-	// bit3=0,       not dormant
-	// bit2=0,       transmit data, not address (not used here)
-	// bit1=0,       do not transmit break (not used here)
-	// bit0=1,       hold logic in reset state while configuring
+	/*
+	bit15=0,      no parity bits
+	bit14=x,      not used when parity is disabled
+	bit13=0,      LSB first
+	bit12=0,      8-bit data length
+	bit11=0,      1 stop bit
+	bits10-8=000, asynchronous UART mode
+	bits7-6=11,   clock source to SMCLK
+	bit5=0,       reject erroneous characters and do not set flag
+	bit4=0,       do not set flag for break characters
+	bit3=0,       not dormant
+	bit2=0,       transmit data, not address (not used here)
+	bit1=0,       do not transmit break (not used here)
+	bit0=1,       hold logic in reset state while configuring
+	*/
 
 	// set CTLW0 - hold logic and configure clock source to SMCLK
 	EUSCI_A2->CTLW0|=0x80;
