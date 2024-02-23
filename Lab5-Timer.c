@@ -76,7 +76,7 @@ void Switch1_Interrupt_Init(void){
   	NVIC_ISER1 = 0x00000008;  
 	
 	// enable interrupts  (// clear the I bit	)
-	EnableInterrupts();              
+	EnableInterrupts();   
 }
 
 void Switch2_Interrupt_Init(void){
@@ -112,8 +112,7 @@ void Switch2_Interrupt_Init(void){
 // Will be triggered if any pin on the port causes interrupt
 //
 // Derived From: Jonathan Valvano
-void PORT1_IRQHandler(void)
-{
+void PORT1_IRQHandler(void){
 	float numSeconds = 0.0;
 	char temp[32];
 
@@ -134,8 +133,7 @@ void PORT1_IRQHandler(void)
 //
 // Interrupt Service Routine for Timer32-1
 //
-void Timer32_1_ISR(void)
-{
+void Timer32_1_ISR(void){
 	if (LED1_State() == FALSE )
 	{
 		LED1_On();
@@ -146,11 +144,8 @@ void Timer32_1_ISR(void)
 //
 // Interrupt Service Routine
 //
-void Timer32_2_ISR(void)
-{
-
+void Timer32_2_ISR(void){
 	MillisecondCounter++;
-
 }
 
 
@@ -175,8 +170,7 @@ int main(void){
 	LED1_Init();
 	LED2_Init();
 	EnableInterrupts();
-  for(EVER)
-	{
-    WaitForInterrupt();
-  }
+	for(EVER){
+    	WaitForInterrupt();
+  	}
 }

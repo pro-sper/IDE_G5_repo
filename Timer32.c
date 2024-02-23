@@ -84,7 +84,7 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 	// Code snippit from slide 45
   	NVIC_IPR6 = (NVIC_IPR6&0XFF00FFFF)|0X00400000;
 
-  EndCritical(sr);
+  	EndCritical(sr);
 }
 
 

@@ -13,7 +13,7 @@ void EnableSysTickTimer(void)
 {
 	// enable SysTick with core clock and interrupts
 	//SYSTICK_STCSR
-	;      
+	EnableInterrupts(); //K
 }
 
 //
@@ -23,7 +23,7 @@ void DisableSysTickTimer(void)
 {
 	// disable SysTick with core clock and interrupts 
 	// SYSTICK_STCSR
-	;      
+	DisableInterrupts(); //K
 }
 // numIntsPerSec is equal to the number is the 
 // number of times per second the SysTickHandler is going to be called.
@@ -34,7 +34,7 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 {
 	long sr = 0;
 
-  sr = StartCritical();
+  	sr = StartCritical();
 	
 	// load the interrupt service routine
 	SysTickPeriodicTask = task;						
@@ -42,17 +42,17 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 	// Control and Status Register
 	// 1) disable SysTick during setup
 	// SYSTICK_STCSR
-  ;  
+  	SYSTICK_STRCSR &= ~BIT0;
 	
 	// NOTE: The STRVR - RELOAD VALUE REGISTER)is a 24 bit value
 	// 2) reload value sets period
 	// SYSTICK_STRVR
-  SYSTICK_STRVR = period-1;  
+  	SYSTICK_STRVR = period-1;  
 	
 	// Current Value Register
 	// 3) any write to current clears it
 	// SYSTICK_STCVR
-  ;    
+  	SYSTICK_STCVR |= 1;
 
 	// priority 2
 	// SCB_SHPR3
@@ -60,8 +60,7 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 	// 23-16 PRI_14 R/W 0h Priority of system handler 14.
 	// 15-8 PRI_13 R/W 0h Priority of system handler 13.
 	// 7-0 PRI_12 R/W 0h Priority of system handler 12
-  SCB_SHPR3 = (SCB_SHPR3&0x00FFFFFF)|0x40000000; 
-	
+  	SCB_SHPR3 = (SCB_SHPR3&0x00FFFFFF)|0x40000000; 
 	
 	// Control and Status Register
 	// 31-17 RESERVED
@@ -71,7 +70,6 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 	//	1 TICKINT R/W 0h
 	//	0 ENABLE R/W 0h Enable SysTick counter
 	//	0b (R/W) = Counter disabled
-
  
 	// 4) enable SysTick with core clock and interrupts	
 	// SYSTICK_STCSR
@@ -84,7 +82,7 @@ void SysTickTimer_Init(void(*task)(void), unsigned long period)
 void SysTick_Handler (void)
 {
 	g_SysTickTimerCounter++; // simple counter
-	(*SysTickPeriodicTask)()	;
+	(*SysTickPeriodicTask)();
 }
 
 

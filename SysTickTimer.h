@@ -27,10 +27,7 @@
 
 void SysTickTimer_Init(void(*task)(void), unsigned long period);
 
-
 void DisableSysTickTimer(void);
 void EnableSysTickTimer(void);
-
-
 
 #endif
