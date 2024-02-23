@@ -98,7 +98,7 @@ void T32_INT1_IRQHandler(void)
   	;    
 	
 	// execute user task
-  (*Timer32_1_PeriodicTask)();               
+  	(*Timer32_1_PeriodicTask)();               
 	
 	// timer reload value to start the timer again
 	// TIMER32_LOAD1

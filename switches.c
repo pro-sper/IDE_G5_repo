@@ -20,7 +20,7 @@ void Switches_Init(void)
 	P1->SEL0 &= ~BIT1;		//Switch 1 P1.1
 	P1->SEL1 &= ~BIT1;
 	
-	P1->SEL0 &= ~BIT4;		//Switch 1 P1.4
+	P1->SEL0 &= ~BIT4;		//Switch 2 P1.4
 	P1->SEL1 &= ~BIT4;
 	
 	// configure as input
@@ -31,7 +31,18 @@ void Switches_Init(void)
 	P1->DIR &= ~BIT4;
 	P1->REN |= BIT4;
 	P1->OUT |= BIT4;
-              
+
+    // Selecting the edge which will trigger the interrupt
+    P1->IES |= BIT1; // #PO_added: because P1.1
+    P1->IES |= BIT4; // #PO_added: because P1.4
+
+    // Clear the pin's interrupt flag
+    P1->IFG &= ~BIT1;
+    P1->IFG &= ~BIT4;
+
+    //Set Interupt Enable (IE) bit for our specific pin
+    P1->IE |= BIT1;
+    P1->IE |= BIT4;
 }
 //------------Switch_Input------------
 // Read and return the status of Switch1
