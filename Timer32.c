@@ -126,15 +126,15 @@ void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider
 	
 	// unsigned long function
 	// assigns the ISR
-  Timer32_2_PeriodicTask = task;      
+  Timer32_2_PeriodicTask = task;
 	
 	// timer reload value
 	// TIMER32_LOAD2
-  ;    
+	;
 	
 	// clear Timer32 Timer 2 interrupt
 	// TIMER32_INTCLR2
-  ;  
+	;
 
   
   // bits31-8=X...X,   reserved
