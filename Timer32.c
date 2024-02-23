@@ -95,7 +95,7 @@ void T32_INT1_IRQHandler(void)
 	// Slide 40
 	// acknowledge Timer32 Timer 1 interrupt
 	// TIMER32_INTCLR1
-  ;    
+  	;    
 	
 	// execute user task
   (*Timer32_1_PeriodicTask)();               

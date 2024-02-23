@@ -4,8 +4,6 @@ Purpose: Houses switch press logic
 Name: Prosper Omiponle  
 Date: 2/23/2024
 
-This file prepared by LJBeato
-01/11/2021
   
 */
 #include "msp.h" 
