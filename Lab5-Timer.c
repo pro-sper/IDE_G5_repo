@@ -13,7 +13,7 @@
 #include "msp.h"
 #include "uart.h"
 #include "switches.h"
-#include "leds.h"
+#include "led.h"
 #include "Timer32.h"
 #include "CortexM.h"
 #include "Common.h"
@@ -25,8 +25,8 @@ extern uint32_t SystemCoreClock;
 BOOLEAN g_sendData = FALSE;
 uint16_t line[128];
 
-int colorIndex = 0;
-BYTE colors[7] = { RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW, WHITE };
+//int colorIndex = 0;
+//BYTE colors[7] = { RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW, WHITE };
 
 BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;

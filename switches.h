@@ -10,6 +10,10 @@ Date: 2/23/2024
 
 #include "Common.h"
 
+void Switch1_Init(void);
+
+void Switch2_Init(void);
+
 void Switches_Init(void);
 
 BOOLEAN Switch1_Pressed(void);

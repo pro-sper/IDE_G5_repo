@@ -1,0 +1,15 @@
+.\timer32.o: Timer32.c
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r.h
+.\timer32.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp_compatibility.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\msp432p401r_classic.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm4.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h
+.\timer32.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h
+.\timer32.o: Timer32.h
+.\timer32.o: Common.h
+.\timer32.o: CortexM.h
