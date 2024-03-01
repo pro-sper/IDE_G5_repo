@@ -22,75 +22,31 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 M:\RIT\IDE\Lab 5 Git\IDE_G5_repo\Prosp_Lab5_1.uvprojx
-Project File Date:  02/28/2024
+Project File Date:  02/29/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_msp432p401r_uvision.s...
 compiling CortexM.c...
-compiling SysTickTimer.c...
-SysTickTimer.c(45): error:  #20: identifier "SYSTICK_STRCSR" is undefined
-    	SYSTICK_STRCSR &= ~BIT0;
-SysTickTimer.c: 0 warnings, 1 error
-compiling system_msp432p401r.c...
+compiling uart.c...
 compiling Timer32.c...
-Timer32.c(57): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_LOAD1 = period;
-Timer32.c(61): error:  #75: operand of "*" must be a pointer
-    	*TIMER32_INTCLR1 &= ~0x00;
-Timer32.c(74): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL1 |= BIT7;
-Timer32.c(75): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL1 |= BIT7;
-Timer32.c(76): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL1 |= BIT7;
-Timer32.c(96): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_INTCLR1 |= 0x01;
-Timer32.c(103): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_LOAD1 = timer1Period;
-Timer32.c(131): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_LOAD2 |= timer2Period;
-Timer32.c(135): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_INTCLR2 |= 0x01;
-Timer32.c(147): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 |=  BIT7;
-Timer32.c(148): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 |=  BIT6;
-Timer32.c(149): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 |=  BIT5;
-Timer32.c(150): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 &= ~BIT3;
-Timer32.c(151): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 &= ~BIT2;
-Timer32.c(152): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 |=  BIT1;
-Timer32.c(153): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_CONTROL2 &= ~BIT0;
-Timer32.c(171): error:  #75: operand of "*" must be a pointer
-    	*TIMER32_INTCLR2 |= 1;
-Timer32.c(178): error:  #75: operand of "*" must be a pointer
-  	*TIMER32_LOAD2 = timer2Period;
-Timer32.c: 0 warnings, 18 errors
+compiling led.c...
+compiling system_msp432p401r.c...
+compiling switches.c...
+compiling ControlPins.c...
 compiling Lab5-Timer.c...
 Lab5-Timer.c(116): warning:  #177-D: variable "numSeconds"  was declared but never referenced
   	float numSeconds = 0.0;
 Lab5-Timer.c(117): warning:  #177-D: variable "temp"  was declared but never referenced
   	char temp[32];
-Lab5-Timer.c(137): warning:  #223-D: function "LED1_State" declared implicitly
-  	if (LED1_State() == FALSE )
-Lab5-Timer.c(139): warning:  #223-D: function "LED1_On" declared implicitly
-  		LED1_On();
-Lab5-Timer.c(141): warning:  #223-D: function "LED1_Off" declared implicitly
-  	else LED1_Off();
-Lab5-Timer.c(158): warning:  #223-D: function "uart0_put" declared implicitly
-  	uart0_put("\r\nLab5 Timer demo\r\n");
-Lab5-Timer.c: 6 warnings, 0 errors
-compiling led.c...
-compiling uart.c...
-compiling switches.c...
-compiling ControlPins.c...
-".\Prosp_Lab5_1.axf" - 19 Error(s), 6 Warning(s).
+Lab5-Timer.c: 2 warnings, 0 errors
+linking...
+.\Prosp_Lab5_1.axf: Error: L6200E: Symbol delay multiply defined (by cortexm.o and switches.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Prosp_Lab5_1.axf" - 1 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -116,13 +72,13 @@ Package Vendor: TexasInstruments
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: TexasInstruments::Device:Startup:3.2.2
-      Include file:  Device\Include\msp_compatibility.h
       Source file:   Device\Source\system_msp432p401r.c
-      Source file:   Examples\EmptyMain\main.c
       Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Source file:   Examples\EmptyMain\main.c
       Source file:   Examples\BlinkLED\blinkLED.c
+      Include file:  Device\Include\msp_compatibility.h
 Target not created.
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

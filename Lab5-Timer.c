@@ -134,11 +134,11 @@ void PORT1_IRQHandler(void){
 // Interrupt Service Routine for Timer32-1
 //
 void Timer32_1_ISR(void){
-	if (LED1_State() == FALSE )
+	if ( P1->OUT & BIT0 )
 	{
-		LED1_On();
+		LED1_on();
 	}
-	else LED1_Off();
+	else LED1_off();
 }
 
 //

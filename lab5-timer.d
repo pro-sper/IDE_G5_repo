@@ -13,8 +13,8 @@
 .\lab5-timer.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h
 .\lab5-timer.o: C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include\system_msp432p401r.h
 .\lab5-timer.o: uart.h
-.\lab5-timer.o: switches.h
 .\lab5-timer.o: Common.h
+.\lab5-timer.o: switches.h
 .\lab5-timer.o: led.h
 .\lab5-timer.o: Timer32.h
 .\lab5-timer.o: CortexM.h

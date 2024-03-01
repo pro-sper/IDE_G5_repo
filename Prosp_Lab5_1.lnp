@@ -1,0 +1,13 @@
+--cpu=Cortex-M4.fp.sp
+".\lab5-timer.o"
+".\led.o"
+".\switches.o"
+".\timer32.o"
+".\uart.o"
+".\controlpins.o"
+".\cortexm.o"
+".\startup_msp432p401r_uvision.o"
+".\system_msp432p401r.o"
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Prosp_Lab5_1.map" -o .\Prosp_Lab5_1.axf

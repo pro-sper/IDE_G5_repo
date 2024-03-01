@@ -15,8 +15,7 @@
 #define BAUD_RATE 9600      //default baud rate 
 extern uint32_t SystemCoreClock;  // clock rate of MCU
 
-void uart0_init(void)
-{
+void uart0_init(void){
 	//Set the UART to RESET state (set bit0 of EUSCI_A0->CTLW0 register to '1')
 	
 	EUSCI_A0->CTLW0|=BIT0;
@@ -121,8 +120,7 @@ void uart2_init(void){
 	EUSCI_A2->IE &= ~(UCTXCPTIE | UCSTTIE | UCTXIE | UCRXIE);
 }
 
-char uart0_getchar(void)
-{
+char uart0_getchar(void){
 	char inChar;
 	// Wait for data
 	// IFG register
@@ -152,8 +150,7 @@ char uart2_getchar(void){
 	return(inChar);
 }
 
-void uart0_putchar(char ch)
-{
+void uart0_putchar(char ch){
 	// Wait until transmission of previous bit is complete 
 	// IFG register
 	while(!(EUSCI_A0->IFG & 0x02));
@@ -178,8 +175,7 @@ void uart2_put(char *ptr_str){
 		uart2_putchar(*ptr_str++);
 }
 
-void uart0_put(char *ptr_str)
-{
+void uart0_put(char *ptr_str){
 	while(*ptr_str != 0)
 		uart0_putchar(*ptr_str++);
 }
@@ -202,18 +198,7 @@ BOOLEAN uart0_dataAvailable(){
 	return go;
 }
 
-// Delay
-/*
-	Wastes CPU cycles by doing a lot of pointless math 
-	200000 iterations results in a delay a little less than a second
-*/
-void delay(void){
-	int x, i = 0;
-	for (i = 0; i < 100000; i++){
-		x += 1;
-	}
-	
-}
+
 
 void clearBuffer(char *buffer, int bufferLength){
 	int i = 0;

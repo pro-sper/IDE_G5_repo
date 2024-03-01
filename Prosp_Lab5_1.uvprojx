@@ -399,11 +399,6 @@
               <FilePath>.\switches.c</FilePath>
             </File>
             <File>
-              <FileName>SysTickTimer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\SysTickTimer.c</FilePath>
-            </File>
-            <File>
               <FileName>Timer32.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Timer32.c</FilePath>
@@ -452,11 +447,6 @@
               <FileName>switches.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\switches.h</FilePath>
-            </File>
-            <File>
-              <FileName>SysTickTimer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\SysTickTimer.h</FilePath>
             </File>
             <File>
               <FileName>Timer32.h</FileName>
