@@ -82,3 +82,54 @@ void LED2_off(void){
 	P2->OUT&=~BIT2;
 }
 
+void LED2_cycle(int index){
+	switch(index){
+		case 1:
+			// red
+			P2->OUT|=BIT0;
+			P2->OUT&=~BIT1;
+			P2->OUT&=~BIT2;
+			break;
+		case 2:
+			// blue
+			P2->OUT&=~BIT0;
+			P2->OUT&=~BIT1;
+			P2->OUT|=BIT2;
+			break;
+		case 3:
+			// green
+			P2->OUT&=~BIT0;
+			P2->OUT|=BIT1;
+			P2->OUT&=~BIT2;
+			break;
+		case 4:
+			// cyan
+			P2->OUT&=~BIT0;
+			P2->OUT|=BIT1;
+			P2->OUT|=BIT2;
+			break;
+		case 5:
+			// magenta
+			P2->OUT|=BIT0;
+			P2->OUT&=~BIT1;
+			P2->OUT|=BIT2;
+			break;
+		case 6:
+			// yellow
+			P2->OUT|=BIT0;
+			P2->OUT|=BIT1;
+			P2->OUT&=~BIT2;
+			break;
+		case 7:
+			// white
+			P2->OUT|=BIT0;
+			P2->OUT|=BIT1;
+			P2->OUT|=BIT2;
+			break;
+		default:
+			//off
+			P2->OUT&=~BIT0;
+			P2->OUT&=~BIT1;
+			P2->OUT&=~BIT2;
+	}
+}

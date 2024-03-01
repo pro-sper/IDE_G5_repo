@@ -25,13 +25,14 @@ extern uint32_t SystemCoreClock;
 BOOLEAN g_sendData = FALSE;
 uint16_t line[128];
 
-//int colorIndex = 0;
+int colorIndex = 0;
 //BYTE colors[7] = { RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW, WHITE };
 
 BOOLEAN Timer1RunningFlag = FALSE;
 BOOLEAN Timer2RunningFlag = FALSE;
 
 unsigned long MillisecondCounter = 0;
+char stringBuffer[50] = "";
 //
 
 //  I/O interrupt pin setup
@@ -86,16 +87,15 @@ void Switch2_Interrupt_Init(void){
 	
 	// initialize the Switch as per previous lab
 	Switch2_Init();
-	
-	// now set the pin to cause falling edge interrupt event
-	// P1.4 is falling edge event
-	P1->IES |= BIT4;
-  
 	// clear flag4 (reduce possibility of extra interrupt)
 	P1->IFG &= ~BIT4;
   
 	// arm interrupt on P1.4 
 	P1->IE |= BIT4;
+
+	// now set the pin to cause falling edge interrupt event
+	// P1.4 is falling edge event
+	P1->IES |= BIT4;
 	
 	// now set the pin to cause falling edge interrupt event
   	NVIC_IPR8 = (NVIC_IPR8&0x00FFFFFF)|0x40000000; // priority 2
@@ -113,20 +113,35 @@ void Switch2_Interrupt_Init(void){
 //
 // Derived From: Jonathan Valvano
 void PORT1_IRQHandler(void){
-	float numSeconds = 0.0;
-	char temp[32];
+	float runningTime = 0.0;
+	//char temp[128];
 
 	// First we check if it came from Switch1 ?
 	if(P1->IFG & BIT1){  // we start a timer to toggle the LED1 1 second ON and 1 second OFF
 		// acknowledge P1.1 is pressed, by setting BIT1 to zero - remember P1.1 is switch 1
 		// clear flag, acknowledge
-		;
+		P1->IFG &= ~BIT1;
+		if(Timer1RunningFlag){
+			Timer1RunningFlag = FALSE;
+		}else{
+			Timer1RunningFlag = TRUE;
+		}
 	}
 	// Now check to see if it came from Switch2 ?
   	if(P1->IFG & BIT4){
 		// acknowledge P1.4 is pressed, by setting BIT4 to zero - remember P1.4 is switch 2
         // clear flag4, acknowledge
-		;
+		P1->IFG &= ~BIT4;
+		runningTime = MillisecondCounter/1000.0;
+		sprintf(stringBuffer, "\r\nTime elapsed: %f", runningTime);
+		uart0_put(stringBuffer);
+		MillisecondCounter = 0;
+
+		colorIndex += 1;
+		if(colorIndex > 7){
+			colorIndex = 1;
+		}
+		LED2_cycle(colorIndex);
   	}
 }
 
@@ -134,11 +149,14 @@ void PORT1_IRQHandler(void){
 // Interrupt Service Routine for Timer32-1
 //
 void Timer32_1_ISR(void){
-	if ( P1->OUT & BIT0 )
-	{
-		LED1_on();
+	if(Timer1RunningFlag){
+		if ( (P1->OUT & BIT0) != BIT0){
+			LED1_on();
+		}
+		else{
+			LED1_off();
+		}
 	}
-	else LED1_off();
 }
 
 //
@@ -158,17 +176,19 @@ int main(void){
 	uart0_put("\r\nLab5 Timer demo\r\n");
 	// Set the Timer32-2 to 2Hz (0.5 sec between interrupts)
 	//Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1); // initialize Timer A32-1;
+	LED1_Init();
+	LED2_Init();
     Timer32_1_Init(&Timer32_1_ISR, SystemCoreClock/2, T32DIV1);
         
 	// Setup Timer32-2 with a .001 second timeout.
 	// So use DEFAULT_CLOCK_SPEED/(1/0.001) = SystemCoreClock/1000
 	//Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1); // initialize Timer A32-2;
 	Timer32_2_Init(&Timer32_2_ISR, SystemCoreClock/1000, T32DIV1);
+
+	uart0_put("\r\nLEDS and Timers Initialized");
     
 	Switch1_Interrupt_Init();
 	Switch2_Interrupt_Init();
-	LED1_Init();
-	LED2_Init();
 	EnableInterrupts();
 	for(EVER){
     	WaitForInterrupt();

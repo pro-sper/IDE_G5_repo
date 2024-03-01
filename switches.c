@@ -100,10 +100,3 @@ BOOLEAN Switch2_Pressed(void)
 	}
 	return (retVal);              // return TRUE(pressed) or FALSE(not pressed)
 }
-
-
-void delay(int i){
-	while(i > 0){
-			i--;
-		}
-	}

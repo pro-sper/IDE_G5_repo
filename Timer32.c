@@ -54,7 +54,7 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 	
 	// timer reload value
 	// TIMER32_LOAD1
-	TIMER32_LOAD1 = period;
+	TIMER32_LOAD1 = timer1Period;
 	
 	// clear Timer32 Timer 1 interrupt
 	// TIMER32_INTCLR1
@@ -72,8 +72,8 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 	// TIMER32_CONTROL1, enable, periodic, 32 bit counter
 	// ^ set these bits ^
 	TIMER32_CONTROL1 |= BIT7;
-	TIMER32_CONTROL1 |= BIT7;
-	TIMER32_CONTROL1 |= BIT7;
+	TIMER32_CONTROL1 |= BIT6;
+	TIMER32_CONTROL1 |= BIT1;
 	
 	// interrupts enabled in the main program after all devices initialized
 	// NVIC_IPR6
@@ -82,7 +82,7 @@ void Timer32_1_Init(void(*task)(void), unsigned long period, enum timer32divider
 	// enable interrupt 25 in NVIC, NVIC_ISER0
 	// NVIC_ISER0
 	// Code snippit from slide 45
-  	NVIC_IPR6 = (NVIC_IPR6&0XFF00FFFF)|0X00400000;
+  	NVIC_ISER0 |= BIT(25);
 
   	EndCritical(sr);
 }
@@ -113,8 +113,7 @@ void T32_INT1_IRQHandler(void)
 //            T32DIV256 for input clock divider /256
 // NOTE: The default clock is 3MHz
 // Outputs: none
-void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider div)
-{
+void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider div){
 	long sr;
 	timer2Period = period;
 
@@ -128,7 +127,7 @@ void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider
 	
 	// timer reload value
 	// TIMER32_LOAD2
-	TIMER32_LOAD2 |= timer2Period;
+	TIMER32_LOAD2 = timer2Period;
 	
 	// clear Timer32 Timer 2 interrupt
 	// TIMER32_INTCLR2
@@ -144,13 +143,9 @@ void Timer32_2_Init(void(*task)(void), unsigned long period, enum timer32divider
 	// bit0,             1=one shot mode, 0=wrapping mode
 
 	//TIMER32_CONTROL2
-	TIMER32_CONTROL2 |=  BIT7;
-	TIMER32_CONTROL2 |=  BIT6;
-	TIMER32_CONTROL2 |=  BIT5;
-	TIMER32_CONTROL2 &= ~BIT3;
-	TIMER32_CONTROL2 &= ~BIT2;
-	TIMER32_CONTROL2 |=  BIT1;
-	TIMER32_CONTROL2 &= ~BIT0;
+	TIMER32_CONTROL2 |= BIT7;
+	TIMER32_CONTROL2 |= BIT6;
+	TIMER32_CONTROL2 |= BIT1;
 
 	// interrupts enabled in the main program after all devices initialized
   	NVIC_IPR6 = (NVIC_IPR6&0xFFFF00FF)|0x00004000; // priority 2
