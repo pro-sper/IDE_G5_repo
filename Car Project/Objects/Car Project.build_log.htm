@@ -1,0 +1,154 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.31.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kenzo Otsuka, Rochester Institute of Technology, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.31.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.31.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      CMSIS_AGDI.dll V1.32.6.0
+Dialog DLL:      TCM.DLL V1.46.0.0
+ 
+<h2>Project:</h2>
+G:\IDE\Car Project\Car Project.uvprojx
+Project File Date:  04/02/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling CortexM.c...
+assembling startup_msp432p401r_uvision.s...
+compiling TimerA.c...
+TimerA.c(79): error:  #268: declaration may not appear after executable statement in block
+  	uint16_t dutyCycle = (uint16_t) (percentDutyCycle * (double)DEFAULT_PERIOD_A0[pin]);
+TimerA.c(124): error:  #268: declaration may not appear after executable statement in block
+  	uint16_t dutyCycle = (uint16_t) (percentDutyCycle * (double)DEFAULT_PERIOD_A2[pin]);
+TimerA.c: 0 warnings, 2 errors
+compiling main1.c...
+main1.c(34): error:  #268: declaration may not appear after executable statement in block
+      uint16_t DC_period = SystemCoreClock/10000;
+main1.c(40): error:  #268: declaration may not appear after executable statement in block
+      int servo_frequency = 50;
+main1.c(41): error:  #268: declaration may not appear after executable statement in block
+      uint16_t servo_period = (SystemCoreClock / TIMER_A2_PRESCALER_VALUE)/servo_frequency;
+main1.c(42): error:  #268: declaration may not appear after executable statement in block
+      double servo_duty = (1.5/(float)servo_frequency);
+main1.c(42): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      double servo_duty = (1.5/(float)servo_frequency);
+main1.c(43): error:  #268: declaration may not appear after executable statement in block
+  	uint16_t servo_pin = 1;
+main1.c(50): error:  #268: declaration may not appear after executable statement in block
+      uint16_t blackThreshold = 500; //cuttoff 
+main1.c(51): error:  #268: declaration may not appear after executable statement in block
+      int midpoint = 0;
+main1.c(76): warning:  #1-D: last line of file ends without a newline
+  }
+main1.c(50): warning:  #177-D: variable "blackThreshold"  was declared but never referenced
+      uint16_t blackThreshold = 500; //cuttoff 
+main1.c: 3 warnings, 7 errors
+compiling ADC14.c...
+ADC14.c(40): error:  #29: expected an expression
+  	for (int bin = 0; bin < BIN_COUNT; ++bin) {
+ADC14.c(40): error:  #20: identifier "bin" is undefined
+  	for (int bin = 0; bin < BIN_COUNT; ++bin) {
+ADC14.c(42): error:  #29: expected an expression
+          for (int i = 0; i < BIN_SIZE; ++i) {
+ADC14.c(42): error:  #20: identifier "i" is undefined
+          for (int i = 0; i < BIN_SIZE; ++i) {
+ADC14.c(49): error:  #268: declaration may not appear after executable statement in block
+      char binString[200] = ""; // Ensure this string is large enough to hold all numbers
+ADC14.c(50): error:  #268: declaration may not appear after executable statement in block
+      char temp[16]; // Temporary string for number conversion
+ADC14.c(51): error:  #29: expected an expression
+      for (int i = 0; i < BIN_COUNT; ++i) {
+ADC14.c(51): error:  #20: identifier "i" is undefined
+      for (int i = 0; i < BIN_COUNT; ++i) {
+ADC14.c(52): warning:  #223-D: function "sprintf" declared implicitly
+          sprintf(temp, "%u ", binAverages[i]);
+ADC14.c(53): warning:  #223-D: function "strcat" declared implicitly
+          strcat(binString, temp);
+ADC14.c(56): warning:  #223-D: function "sprintf" declared implicitly
+      sprintf(stringBuffer, "Bin Averages: %s\n", binString);
+ADC14.c(57): warning:  #223-D: function "uart0_put" declared implicitly
+  	uart0_put(stringBuffer);
+ADC14.c(65): error:  #29: expected an expression
+      for (int i = 2; i < LINE_SIZE - 2; ++i) {
+ADC14.c(65): error:  #20: identifier "i" is undefined
+      for (int i = 2; i < LINE_SIZE - 2; ++i) {
+ADC14.c(77): error:  #29: expected an expression
+  	for(int i = 0; i < LINE_SIZE; i++){
+ADC14.c(77): error:  #20: identifier "i" is undefined
+  	for(int i = 0; i < LINE_SIZE; i++){
+ADC14.c(80): error:  #268: declaration may not appear after executable statement in block
+  	uint16_t average = sum / LINE_SIZE;
+ADC14.c(81): error:  #268: declaration may not appear after executable statement in block
+  	uint16_t blackThreshold = (uint16_t)(0.4 * average);
+ADC14.c(86): error:  #268: declaration may not appear after executable statement in block
+  	int firstBlackBarStart = -1;
+ADC14.c(87): error:  #268: declaration may not appear after executable statement in block
+      int firstBlackBarEnd = -1;
+ADC14.c(88): error:  #268: declaration may not appear after executable statement in block
+      int secondBlackBarStart = -1;
+ADC14.c(89): error:  #268: declaration may not appear after executable statement in block
+      int secondBlackBarEnd = -1;
+ADC14.c(92): error:  #29: expected an expression
+      for (int i = 0; i < LINE_SIZE; ++i) {
+ADC14.c: 4 warnings, 19 errors
+compiling SysTickTimer.c...
+compiling Timer32.c...
+compiling switches.c...
+compiling led.c...
+compiling uart.c...
+compiling motors.c...
+motors.c(47): warning:  #1-D: last line of file ends without a newline
+  }
+motors.c: 1 warning, 0 errors
+compiling ControlPins.c...
+compiling system_msp432p401r.c...
+".\Objects\Car Project.axf" - 28 Error(s), 8 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: TexasInstruments
+                http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/msp432cmsis/latest/exports/TexasInstruments.MSP432P4xx_DFP.3.2.6.pack
+                TexasInstruments.MSP432P4xx_DFP.3.2.6
+                Device Family Pack for Texas Instruments SimpleLink(TM) MSP432 Series
+   * Component: Startup Version: 3.2.2
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Users\Kenzo\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  C:\Users\Kenzo\AppData\Local\Arm\Packs\TexasInstruments\MSP432P4xx_DFP\3.2.6\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+
+   * Component: TexasInstruments::Device:Startup:3.2.2
+      Include file:  Device\Include\msp_compatibility.h
+      Source file:   Examples\BlinkLED\blinkLED.c
+      Source file:   Device\Source\startup_msp432p401r_uvision.s
+      Source file:   Device\Source\system_msp432p401r.c
+      Source file:   Examples\EmptyMain\main.c
+Target not created.
+Build Time Elapsed:  00:00:51
+</pre>
+</body>
+</html>
